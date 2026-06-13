@@ -33,6 +33,6 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/ww
 # نسخ إعدادات Nginx المخصصة لـ Laravel
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# فتح المنفذ وإجبار السيرفر على تشغيل الجداول والصور تلقائياً قبل تشغيل الموقع فوراً
+# فتح المنفذ وتشغيل قاعدة البيانات وإعطاء الصلاحيات الكاملة للملفات ثم تشغيل السيرفر
 EXPOSE 80
-CMD php artisan migrate:fresh --seed --force && service nginx start && php-fpm
+CMD php artisan migrate:fresh --seed --force && chown -R www-data:www-data /var/www/database /var/www/storage && service nginx start && php-fpm
