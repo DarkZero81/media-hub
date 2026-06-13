@@ -29,6 +29,8 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # نسخ إعدادات Nginx المخصصة لـ Laravel
 COPY nginx.conf /etc/nginx/nginx.conf
 
+# نسخ إعدادات Nginx المخصصة لـ Laravel
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # تشغيل خادم Nginx مع الـ PHP
 EXPOSE 80
