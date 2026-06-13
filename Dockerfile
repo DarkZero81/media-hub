@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.4-fpm
 
 # تثبيت الإضافات والمكتبات المطلوبة لـ Laravel
 RUN apt-get update && apt-get install -y \
