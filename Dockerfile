@@ -32,6 +32,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # نسخ إعدادات Nginx المخصصة لـ Laravel
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# تشغيل خادم Nginx مع الـ PHP
+# تشغيل خادم Nginx والـ PHP، مع تشغيل قاعدة البيانات وحقن الصور تلقائياً عند الإقلاع
 EXPOSE 80
-CMD service nginx start && php-fpm
+CMD php artisan migrate:fresh --seed --force && service nginx start && php-fpm
+
