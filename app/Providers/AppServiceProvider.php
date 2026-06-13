@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+// 1. الاستدعاء الصحيح لكافة المكتبات يجب أن يكون هنا خارج نطاق الكلاس بالملي
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL; 
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,14 +19,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-use Illuminate\Support\Facades\URL;
-
-public function boot(): void
-{
-    // فحص: إذا كان الموقع يعمل على سيرفر خارجي (وليس جهازك المحلي)، أجبره على الـ HTTPS الآمن
-    if (config('app.env') !== 'local') {
-        URL::forceScheme('https');
+    public function boot(): void
+    {
+        // 2. فحص السيرفر وإجبار الروابط على الـ HTTPS الآمن لمنع الـ Mixed Content
+        if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+        }
     }
-}
-
 }
