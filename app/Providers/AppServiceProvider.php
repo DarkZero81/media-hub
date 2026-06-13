@@ -17,8 +17,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
+use Illuminate\Support\Facades\URL;
+
+public function boot(): void
+{
+    // فحص: إذا كان الموقع يعمل على سيرفر خارجي (وليس جهازك المحلي)، أجبره على الـ HTTPS الآمن
+    if (config('app.env') !== 'local') {
+        URL::forceScheme('https');
     }
+}
+
 }
