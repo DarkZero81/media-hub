@@ -87,37 +87,27 @@
 
         <!-- السكربت المباشر والنظيف بدون أي استدعاءات خارجية لتلافي أخطاء الـ Console -->
         <script>
-            const themeCheckbox = document.getElementById('theme-toggle-checkbox');
-            
-            if (document.documentElement.classList.contains('dark')) {
-                themeCheckbox.checked = true;
-            } else {
-                themeCheckbox.checked = false;
-            }
+const themeCheckbox = document.getElementById('theme-toggle-checkbox');
 
-            themeCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            });
+// إضافة هذا الشرط الذكي تمنع الانهيار تماماً إذا لم يكن الزر موجوداً في قالب الصفحة الحالي
+if (themeCheckbox) {
+    if (document.documentElement.classList.contains('dark')) {
+        themeCheckbox.checked = true;
+    } else {
+        themeCheckbox.checked = false;
+    }
 
-            // قائمة الهامبرغر
-            const menuToggle = document.getElementById('menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            const hamburgerIcon = document.getElementById('hamburger-icon');
-            const closeIcon = document.getElementById('close-icon');
+    themeCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        }
+    });
+}
 
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('hidden');
-                    hamburgerIcon.classList.toggle('hidden');
-                    closeIcon.classList.toggle('hidden');
-                });
-            }
         </script>
     </body>
 </html>
